@@ -21,7 +21,8 @@ namespace EmotionalIntelligenceBot
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<DataContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("Db")));
+            services.AddDbContext<DataContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("Db")));
+            services.AddSingleton<TelegramBot>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
